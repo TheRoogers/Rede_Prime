@@ -13,11 +13,8 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  String? username, cpf, cnhnumber, picturecnh, email, password;
 
-  String? email;
-  String? password;
   bool _showPassword = false;
   bool _showConfirmPassword = false;
   bool isLoading = false;
@@ -45,6 +42,43 @@ class _SignupFormState extends State<SignupForm> {
               width: size.width * 0.90,
               child: Column(
                 children: [
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    elevation: 15,
+                    shadowColor: AppColors.secundary,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.secundary),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: AppColors.secundary,
+                        ),
+                        hintText: 'Nome',
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Coloque seu nome';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {
+                        username = val!;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.03), //espaco entre os campos
+
+                  //email
                   Material(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     elevation: 15,
@@ -213,12 +247,12 @@ class _SignupFormState extends State<SignupForm> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               setState(() {
-                  isLoading = true;
-                });
+                isLoading = true;
+              });
               _formKey.currentState!.save();
 
               AuthenticationHelper()
-                  .signUp(email: email!, password: password!)
+                  .signUp(email: email!, password: password!, username: username!)
                   .then((result) {
                 if (result == null) {
                   Navigator.pushReplacement(context,
