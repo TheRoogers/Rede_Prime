@@ -20,8 +20,8 @@ class _SignUpPageState extends State<SignUpPage> {
           children: <Widget>[
             SizedBox(height: size.height * 0.04),
             Image.asset(
-              AppImages.logoWhite,
-              height: size.height * 0.20, // tamanho da imagem
+              AppImages.logo,
+              height: size.height * 0.10, // tamanho da imagem
             ),
             SignupForm(),
           ],

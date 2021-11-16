@@ -1,3 +1,6 @@
+
+
+import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:rede_prime/screens/home/home_page.dart';
 import 'package:rede_prime/shared/auth/authentication.dart';
@@ -13,7 +16,12 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
-  String? username, cpf, cnhnumber, picturecnh, email, password;
+  String? username;
+  String? cpf;
+  
+  String? email;
+  String? password;
+  DateTime? valitycnh;
 
   bool _showPassword = false;
   bool _showConfirmPassword = false;
@@ -42,12 +50,16 @@ class _SignupFormState extends State<SignupForm> {
               width: size.width * 0.90,
               child: Column(
                 children: [
+                  //Nome
                   Material(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     elevation: 15,
                     shadowColor: AppColors.secundary,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                          fontSize: 16.0,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.all(
@@ -78,6 +90,101 @@ class _SignupFormState extends State<SignupForm> {
                   ),
                   SizedBox(height: size.height * 0.03), //espaco entre os campos
 
+                  //cpf/cnpj
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    elevation: 15,
+                    shadowColor: AppColors.secundary,
+                    child: TextFormField(
+                        decoration: InputDecoration(
+                          errorStyle: TextStyle(
+                            fontSize: 16.0,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.secundary),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: AppColors.secundary,
+                          ),
+                          hintText: 'CPF/ CNPJ',
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Coloque seu CPF';
+                          }
+                          return null;
+                        },
+                        onSaved: (val) {
+                          cpf = val!;
+                        },
+                        keyboardType: TextInputType.number),
+                  ),
+                  SizedBox(height: size.height * 0.02),
+
+                  //adicionar foto
+                  Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      FloatingActionButton(
+                        onPressed: () {},
+                        child: Icon(Icons.camera_alt),
+                        backgroundColor: AppColors.secundary,
+                      ),
+                      Text('Adicione uma foto da sua CNH ',
+                          style: TextStyles.forgotpassword),
+                    ],
+                  ),
+                  SizedBox(height: size.height * 0.02),
+
+                  //validade cnh
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    elevation: 15,
+                    shadowColor: AppColors.secundary,
+                    child: DateTimeFormField(
+                      decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                          fontSize: 16.0,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.secundary),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: AppColors.secundary,
+                        ),
+                        hintText: 'Vencimento CNH',
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                      ),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Coloque a data de vencimento';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {
+                        valitycnh = val!;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.03),
+
                   //email
                   Material(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -85,6 +192,9 @@ class _SignupFormState extends State<SignupForm> {
                     shadowColor: AppColors.secundary,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                          fontSize: 16.0,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.all(
@@ -117,6 +227,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                   ),
                   SizedBox(height: size.height * 0.03), //espaco entre os campos
+                  //Senha
                   Material(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -126,6 +237,9 @@ class _SignupFormState extends State<SignupForm> {
                     child: TextFormField(
                       controller: pass,
                       decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                          fontSize: 16.0,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.all(
@@ -171,6 +285,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),
+                  //Senha
                   Material(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -179,6 +294,9 @@ class _SignupFormState extends State<SignupForm> {
                     shadowColor: AppColors.secundary,
                     child: TextFormField(
                       decoration: InputDecoration(
+                        errorStyle: TextStyle(
+                          fontSize: 16.0,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.all(
@@ -252,7 +370,11 @@ class _SignupFormState extends State<SignupForm> {
               _formKey.currentState!.save();
 
               AuthenticationHelper()
-                  .signUp(email: email!, password: password!, username: username!)
+                  .signUp(
+                      email: email!,
+                      password: password!,
+                      username: username!,
+                      cpf: cpf!)
                   .then((result) {
                 if (result == null) {
                   Navigator.pushReplacement(context,
@@ -271,6 +393,7 @@ class _SignupFormState extends State<SignupForm> {
             }
           },
         ),
+        SizedBox(height: size.height * 0.05),
         GestureDetector(
           onTap: () {},
           child: Row(

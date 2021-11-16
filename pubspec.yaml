@@ -28,6 +28,9 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^2.1.0
+  date_field: ^2.1.2
+  image_picker: ^0.8.4+4
+  
 
 dev_dependencies:
   flutter_test:
