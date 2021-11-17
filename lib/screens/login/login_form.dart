@@ -274,7 +274,71 @@ class _LoginFormState extends State<LoginForm> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/signupage");
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text(
+                            'Se cadastrar como?',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "/signupage");
+                                  },
+                                  splashColor: Colors.purpleAccent,
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(
+                                          Icons.account_circle,
+                                          color: AppColors.secundary,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Cliente',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.primary),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  splashColor: AppColors.secundary,
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(
+                                          Icons.shield,
+                                          color: AppColors.secundary,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Segurado',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.primary),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
                 },
                 child: Text(
                   "Cadastre-se",

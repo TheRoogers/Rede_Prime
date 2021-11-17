@@ -6,7 +6,12 @@ class AuthenticationHelper {
   get user => _auth.currentUser;
 
   //SIGN UP METHOD
-  Future signUp({required String email, required String password, required String username, required String cpf}) async {
+  Future signUp(
+      {required String email,
+      required String password,
+      required String username,
+      required DateTime valitycnh,
+      required String url}) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -14,7 +19,7 @@ class AuthenticationHelper {
       );
       User? updateUser = FirebaseAuth.instance.currentUser;
       updateUser!.updateDisplayName(username);
-      userSetup(username, cpf);
+      userSetup(username, valitycnh, url);
 
       return null;
     } on FirebaseAuthException catch (e) {
