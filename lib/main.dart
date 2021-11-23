@@ -4,6 +4,7 @@ import 'package:rede_prime/screens/home/information_page.dart';
 import 'package:rede_prime/screens/login/login_page.dart';
 import 'package:rede_prime/screens/signup/signup_page.dart';
 import 'package:rede_prime/screens/splash/splash_page.dart';
+import 'package:rede_prime/screens/vehicle/vehicle_registration_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/loginpage': (BuildContext context) => new LoginPage(),
         '/signupage': (BuildContext context) => new SignUpPage(),
         '/informationpage': (BuildContext context) => new InformationPage(),
+        '/VehicleRegistrationPage': (BuildContext context) => new VehicleRegistrationPage(),
       },
     );
   }

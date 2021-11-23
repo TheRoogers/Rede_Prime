@@ -45,4 +45,6 @@ class AuthenticationHelper {
     await _auth.signOut();
     print('signout');
   }
+
+  
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rede_prime/screens/login/login_page.dart';
 import 'package:rede_prime/shared/auth/authentication.dart';
@@ -12,13 +13,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  var currentUser = FirebaseAuth.instance.currentUser; 
+
+  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.secundary,
-        title: Text('Drawer teste'),
+        title: Text('Rede Prime Automotive'),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -45,12 +50,18 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: AppColors.secundary,
               ),
-              accountEmail: Text('email'),
-              accountName: Text('name'),
-            )
+              accountEmail: Text("${currentUser!.email}"),
+              accountName: Text("${currentUser!.displayName}"),
+               currentAccountPicture: CircleAvatar(),
+            ),
+            ListTile(title: Text('Meu Perfil')),
+            ListTile(title: Text('Oficina')),
+            ListTile(title: Text('Beneficios')),
+            ListTile(title: Text('Sair')),
           ],
         ),
       ),
+      
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16.0),
@@ -58,26 +69,31 @@ class _HomePageState extends State<HomePage> {
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0, //comprimento
         children: <Widget>[
-          Card(
-            clipBehavior: Clip.antiAlias,
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(width: 0.1),
-              borderRadius: BorderRadius.circular(10),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, "/VehicleRegistrationPage");
+            },
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                ),
+                Image.asset(
+                  AppImages.registercar,
+                  height: size.height * 0.15,
+                  color: AppColors.secundary,
+                ),
+                ListTile(
+                  title: const Text('Cadastrar Veiculo'),
+                )
+              ]),
             ),
-            child: Column(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-              ),
-              Image.asset(
-                AppImages.registercar,
-                height: size.height * 0.15,
-                color: AppColors.secundary,
-              ),
-              ListTile(
-                title: const Text('Cadastrar Veiculo'),
-              )
-            ]),
           ),
           Card(
             clipBehavior: Clip.antiAlias,

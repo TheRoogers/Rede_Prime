@@ -27,7 +27,7 @@ class GlobalMethods {
             actions: [
               TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text('Cancel')),
+                  child: Text('Cancelar')),
               TextButton(
                   onPressed: () {
                     fct();
@@ -56,7 +56,7 @@ class GlobalMethods {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Error occured'),
+                  child: Text('Erro encontrado'),
                 ),
               ],
             ),
