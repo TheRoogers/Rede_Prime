@@ -27,6 +27,29 @@ class AuthenticationHelper {
     }
   }
 
+  //SIGN UP SEGURADO METHOD
+  Future signUpSegurado(
+      {required String email,
+      required String password,
+      required String username,
+      required String valityseguradora,
+      required DateTime valitycnh,
+      required String url}) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? updateUser = FirebaseAuth.instance.currentUser;
+      updateUser!.updateDisplayName(username);
+      userSeguradoSetup(username, valitycnh, valityseguradora, url);
+
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
   //SIGN IN METHOD
   Future signIn({required String email, required String password}) async {
     try {

@@ -17,3 +17,21 @@ Future<void> userSetup(
   );
   return;
 }
+
+Future<void> userSeguradoSetup(
+    String displayName, DateTime valitycnh, String valityseguradora, String url) async {
+  CollectionReference users =
+      FirebaseFirestore.instance.collection('Users_ClientSegurado');
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String uid = auth.currentUser!.uid.toString();
+  users.add(
+    {
+      'uid': uid,
+      'displayname': displayName,
+      'valitycnh': valitycnh,
+      'valityseguradora': valityseguradora,
+      'url': url
+    },
+  );
+  return;
+}

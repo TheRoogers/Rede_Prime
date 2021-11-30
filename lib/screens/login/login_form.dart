@@ -313,7 +313,9 @@ class _LoginFormState extends State<LoginForm> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "/signuppagesegurado");
+                                  },
                                   splashColor: AppColors.secundary,
                                   child: Row(
                                     children: [

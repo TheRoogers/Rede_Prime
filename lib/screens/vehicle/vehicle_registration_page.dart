@@ -11,9 +11,9 @@ class VehicleRegistrationPage extends StatefulWidget {
 }
 
 class _VehicleRegistrationPageState extends State<VehicleRegistrationPage> {
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.secundary,
@@ -21,7 +21,14 @@ class _VehicleRegistrationPageState extends State<VehicleRegistrationPage> {
           "Cadastrar Veiculo",
         ),
       ),
-      body: ApiFipePage()
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: size.height * 0.04),
+            ApiFipePage()
+          ],
+        ),
+      ),
     );
   }
 }
