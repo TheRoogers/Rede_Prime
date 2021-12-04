@@ -10,4 +10,8 @@ class AppImages {
   static const accidentcar = "assets/images/icons/acidentcar.png";
   static const servicecar = "assets/images/icons/servicecar.png";
   static const question = "assets/images/icons/question.png";
+  static const audi1 = "assets/images/cars/audi1.jpg";
+  static const audi2 = "assets/images/cars/audi2.jpg";
+  static const camaro = "assets/images/cars/camaro.jpg";
+  static const peugeot = "assets/images/cars/peugeot.jpg";
 }

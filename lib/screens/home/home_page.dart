@@ -13,10 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var currentUser = FirebaseAuth.instance.currentUser;
 
-  var currentUser = FirebaseAuth.instance.currentUser; 
-
-  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               ),
               accountEmail: Text("${currentUser!.email}"),
               accountName: Text("${currentUser!.displayName}"),
-               currentAccountPicture: CircleAvatar(),
+              currentAccountPicture: CircleAvatar(),
             ),
             ListTile(title: Text('Meu Perfil')),
             ListTile(title: Text('Oficina')),
@@ -61,7 +59,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16.0),
@@ -70,7 +67,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisSpacing: 10.0, //comprimento
         children: <Widget>[
           GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, "/VehicleRegistrationPage");
             },
             child: Card(
@@ -80,19 +77,21 @@ class _HomePageState extends State<HomePage> {
                 side: BorderSide(width: 0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Column(children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                ),
-                Image.asset(
-                  AppImages.registercar,
-                  height: size.height * 0.15,
-                  color: AppColors.secundary,
-                ),
-                ListTile(
-                  title: const Text('Cadastrar Veiculo'),
-                )
-              ]),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                  ),
+                  Image.asset(
+                    AppImages.registercar,
+                    height: size.height * 0.15,
+                    color: AppColors.secundary,
+                  ),
+                  ListTile(
+                    title: const Text('Cadastrar Veiculo'),
+                  )
+                ],
+              ),
             ),
           ),
           Card(
@@ -118,27 +117,32 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Card(
-            clipBehavior: Clip.antiAlias,
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(width: 0.1),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                ),
-                Image.asset(
-                  AppImages.accidentcar,
-                  height: size.height * 0.15,
-                  color: AppColors.secundary,
-                ),
-                ListTile(
-                  title: const Text('Cadastrar Sinistro'),
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/SinistrePage");
+            },
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                  ),
+                  Image.asset(
+                    AppImages.accidentcar,
+                    height: size.height * 0.15,
+                    color: AppColors.secundary,
+                  ),
+                  ListTile(
+                    title: const Text('Cadastrar Sinistro'),
+                  ),
+                ],
+              ),
             ),
           ),
           Card(

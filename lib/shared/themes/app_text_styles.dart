@@ -26,4 +26,25 @@ class TextStyles {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+
+  static final titulo = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.black
+  );
+
+  static final campodeTexto = GoogleFonts.quicksand(
+    fontSize: 16,
+  );
+
+  static final link = GoogleFonts.quicksand(
+    fontSize: 16,
+    color: Colors.lightBlue
+  );
+
+  static final link2 = GoogleFonts.quicksand(
+    fontSize: 18,
+    color: Colors.lightBlue
+  );
+  
 }
