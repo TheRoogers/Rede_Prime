@@ -86,6 +86,8 @@ class _SinistrePageState extends State<SinistrePage> {
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, "/acidentepage");
+              //Navigator.pushNamed(context, "/accidentphotopage");
+              
             },
             child: Card(
               color: Colors.yellow.withOpacity(0.5),

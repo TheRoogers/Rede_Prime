@@ -10,6 +10,7 @@ import 'package:rede_prime/screens/vehicle/acidente.dart';
 import 'package:rede_prime/screens/vehicle/pane.dart';
 import 'package:rede_prime/screens/vehicle/roubo.dart';
 import 'package:rede_prime/screens/vehicle/sinistre_registration_page.dart';
+import 'package:rede_prime/screens/vehicle/accidentphoto_page.dart';
 import 'package:rede_prime/screens/vehicle/vehicle_registration_page.dart';
 
 Future main() async {
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/acidentepage': (BuildContext context) => new AcidentePage(),
         '/roubopage': (BuildContext context) => new RouboPage(),
         '/panepage': (BuildContext context) => new PanePage(),
+        '/accidentphotopage': (BuildContext context) => new AccidentPhoto(),        
       },
     );
   }

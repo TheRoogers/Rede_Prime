@@ -177,61 +177,63 @@ class _RouboPageState extends State<RouboPage> {
                             );
                           },
                         ),
-                        ElevatedButton(
-                          child: isLoading
-                              ? CircularProgressIndicator(
-                                  color: AppColors.titlesplash,
-                                )
-                              : const Text('Cancelar'),
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                // tamanho do botao
-                                horizontal: 50,
-                                vertical: 20,
-                              ),
-                              primary: AppColors.secundary,
-                              elevation: 15,
-                              onPrimary: AppColors.titlesplash,
-                              textStyle: TextStyles.bottomLogin),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                // retorna um objeto do tipo Dialog
-                                return AlertDialog(
-                                  title: new Text("Aviso"),
-                                  content: new Text(
-                                      "se você cancelar todas as informações serão perdidas"),
-                                  actions: <Widget>[
-                                    // define os botões na base do dialogo
-                                    new ElevatedButton(
-                                      child: Text("OK"),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                AppColors.secundary),
+                        Center(
+                          child: ElevatedButton(
+                            child: isLoading
+                                ? CircularProgressIndicator(
+                                    color: AppColors.titlesplash,
+                                  )
+                                : const Text('Cancelar'),
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  // tamanho do botao
+                                  horizontal: 50,
+                                  vertical: 20,
+                                ),
+                                primary: AppColors.secundary,
+                                elevation: 15,
+                                onPrimary: AppColors.titlesplash,
+                                textStyle: TextStyles.bottomLogin),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // retorna um objeto do tipo Dialog
+                                  return AlertDialog(
+                                    title: new Text("Aviso"),
+                                    content: new Text(
+                                        "se você cancelar todas as informações serão perdidas"),
+                                    actions: <Widget>[
+                                      // define os botões na base do dialogo
+                                      new ElevatedButton(
+                                        child: Text("OK"),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  AppColors.secundary),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, "/homepage");
+                                        },
                                       ),
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, "/homepage");
-                                      },
-                                    ),
-                                    new ElevatedButton(
-                                      child: Text("Cancelar"),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                AppColors.secundary),
+                                      new ElevatedButton(
+                                        child: Text("Cancelar"),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  AppColors.secundary),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
                                       ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
